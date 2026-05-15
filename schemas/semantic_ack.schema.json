@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://irsan.ai/schemas/semantic_ack.schema.json",
+  "title": "ARIA Semantic ACK",
+  "type": "object",
+  "required": ["status", "similarity_score", "threshold_profile"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["ack_confirmed", "ack_drift_detected", "retransmit_requested", "mission_escalated"]
+    },
+    "similarity_score": {"type": "number", "minimum": 0, "maximum": 1},
+    "threshold_profile": {"type": "string", "enum": ["strict", "balanced", "exploratory"]}
+  },
+  "additionalProperties": false
+}

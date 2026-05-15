@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://irsan.ai/schemas/aria_packet.schema.json",
+  "title": "ARIA Packet",
+  "type": "object",
+  "required": [
+    "aria_version",
+    "channel_id",
+    "origin_type",
+    "mission_core",
+    "constraints",
+    "context_snapshot",
+    "intent_checksum",
+    "chain_depth",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "aria_version": {"type": "string"},
+    "channel_id": {"type": "string", "pattern": "^[0-9]{3}$"},
+    "origin_type": {"type": "string", "enum": ["HUMAN", "AGENT", "SYSTEM", "HYBRID"]},
+    "mission_core": {"type": "string", "minLength": 1},
+    "constraints": {"type": "array", "items": {"type": "string"}},
+    "context_snapshot": {"type": "object"},
+    "intent_checksum": {"type": "string"},
+    "chain_depth": {"type": "integer", "minimum": 0},
+    "timestamp_utc": {"type": "string"}
+  },
+  "additionalProperties": false
+}

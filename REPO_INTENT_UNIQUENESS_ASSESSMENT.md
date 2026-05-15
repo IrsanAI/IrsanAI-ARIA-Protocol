@@ -140,7 +140,7 @@ Damit wird ARIA von „Drift erkennen“ zu „Drift proaktiv vermeiden“ erwei
 ## 7) Detaillierter Implementierungsplan für CINL
 
 ### Phase A — RFC-Design (1–2 Wochen)
-- Neue Draft-Datei: `ARIA-RFC-003_Capability_Negotiation.md`
+- Neue Draft-Datei: `ARIA-RFC-003_Domain_Thresholds.md (current) + optional ARIA-RFC-004_Capability_Negotiation.md (future split)`
 - Definieren:
   - ACC Schema
   - Negotiation States (INIT, ALIGN, MISMATCH, CONFIRMED)

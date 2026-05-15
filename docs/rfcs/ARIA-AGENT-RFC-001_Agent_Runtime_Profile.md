@@ -2,9 +2,9 @@
 ## Agent Runtime Profile (Draft)
 
 Status: DRAFT  
-Version: 0.1  
+Version: 0.2  
 Date: 2026-05-15  
-Depends: ARIA-RFC-001, ARIA-RFC-002, ARIA-RFC-003
+Depends: ARIA-RFC-001, ARIA-RFC-002, ARIA-RFC-003, ARIA-RFC-004
 
 ## 1. Purpose
 Define a minimum runtime profile for ARIA-native agents so independent implementations remain interoperable.
@@ -39,13 +39,15 @@ Required envelope fields:
 - `timestamp_utc`
 
 ## 5. Conformance Signals
-Each runtime SHOULD output machine-readable events:
+Each runtime MUST output machine-readable events:
 - `ack_confirmed`
 - `ack_drift_detected`
 - `retransmit_requested`
 - `mission_escalated`
 
-## 6. Security Direction (Draft)
+Each runtime SHOULD emit signed accountability events and SHOULD support RRC export.
+
+## 6. Security Direction
 Runtimes MUST:
 - verify envelope integrity before execution,
 - keep immutable accountability records for each handoff,

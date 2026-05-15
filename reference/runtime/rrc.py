@@ -26,12 +26,5 @@ def emit_rrc_capsule(
         "accountability_events": accountability_events or [],
         "generated_at": datetime.now(timezone.utc).isoformat(),
     }
-    # schema currently does not include extension fields; validate canonical subset
-    validate_rrc_capsule({
-        "capsule_id": capsule["capsule_id"],
-        "mission_fingerprint": capsule["mission_fingerprint"],
-        "hop_sequence": capsule["hop_sequence"],
-        "final_outcome": capsule["final_outcome"],
-        "audit_signature": capsule["audit_signature"],
-    })
+    validate_rrc_capsule(capsule)
     return capsule

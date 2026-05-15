@@ -194,7 +194,7 @@ AGENT-FIRST   →  Human remains principal. Agent is primary user.
 ### Repository Structure
 
 ```
-IrsanAI---ARIA-Protocoll/
+IrsanAI-ARIA-Protocol/
 │
 ├── README.md                          ← You are here
 ├── ARIA-RFC-001_Protocol_Stack.md     ← Full protocol specification
@@ -540,6 +540,6 @@ Namensnennung erwünscht: *„Basierend auf dem ARIA-Protokoll — IrsanAI, 2025
 <div align="center">
 
 **ARIA Protocol** · IrsanAI · Vatertag 2025
-[RFC-001](./ARIA-RFC-001_Protocol_Stack.md) · [RFC-002](./ARIA-RFC-002_Intent_Checksum.md) · [Issues](https://github.com/IrsanAI/IrsanAI---ARIA-Protocoll/issues) · [Discussions](https://github.com/IrsanAI/IrsanAI---ARIA-Protocoll/discussions)
+[RFC-001](./ARIA-RFC-001_Protocol_Stack.md) · [RFC-002](./ARIA-RFC-002_Intent_Checksum.md) · [Issues](https://github.com/IrsanAI/IrsanAI-ARIA-Protocol/issues) · [Discussions](https://github.com/IrsanAI/IrsanAI-ARIA-Protocol/discussions)
 
 </div>

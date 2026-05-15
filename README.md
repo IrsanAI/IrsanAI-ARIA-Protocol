@@ -199,15 +199,17 @@ IrsanAI-ARIA-Protocol/
 ├── README.md                          ← You are here
 ├── ARIA-RFC-001_Protocol_Stack.md     ← Full protocol specification
 ├── ARIA-RFC-002_Intent_Checksum.md    ← Intent Checksum Algorithm
-├── CONTRIBUTING.md                    ← How to contribute (coming)
+├── CONTRIBUTING.md                    ← How to contribute
 │
-├── /specs                             ← Future RFCs
-│   ├── ARIA-RFC-003 (planned)         ← Domain threshold calibration
+├── ARIA-RFC-003_Domain_Thresholds.md  ← Domain threshold calibration
+├── REPO_INTENT_UNIQUENESS_ASSESSMENT.md ← Strategic analysis and roadmap
+│
+├── /specs (planned)                   ← Future RFCs extension set
 │   ├── ARIA-RFC-004 (planned)         ← Embedding model registry
 │   └── ARIA-RFC-005 (planned)         ← Quantum-resistant trust layer
 │
-└── /reference                         ← Reference implementation (coming)
-    └── aria_ica.py                    ← Intent Checksum Algorithm
+└── /reference (planned)               ← Reference implementation
+    └── aria_ica.py (planned)          ← Intent Checksum Algorithm
 ```
 
 ---

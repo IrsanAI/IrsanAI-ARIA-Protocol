@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://irsan.ai/schemas/rrc_capsule.schema.json",
+  "title": "Resonance Replay Capsule",
+  "type": "object",
+  "required": ["capsule_id", "mission_fingerprint", "hop_sequence", "final_outcome", "audit_signature"],
+  "properties": {
+    "capsule_id": {"type": "string"},
+    "mission_fingerprint": {"type": "string"},
+    "hop_sequence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["agent_id", "received_ic", "recomputed_ic", "ack_status", "delta_score"],
+        "properties": {
+          "agent_id": {"type": "string"},
+          "received_ic": {"type": "string"},
+          "recomputed_ic": {"type": "string"},
+          "ack_status": {"type": "string"},
+          "delta_score": {"type": "number", "minimum": 0, "maximum": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "final_outcome": {"type": "string"},
+    "audit_signature": {"type": "string"}
+  },
+  "additionalProperties": false
+}

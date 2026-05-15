@@ -198,6 +198,7 @@ IrsanAI-ARIA-Protocol/
 │
 ├── README.md                          ← You are here
 ├── docs/rfcs/ARIA-RFC-001_Protocol_Stack.md     ← Full protocol specification
+├── docs/README_ARCHITECTURE.md               ← Architecture and intent compass
 ├── docs/rfcs/ARIA-RFC-002_Intent_Checksum.md    ← Intent Checksum Algorithm
 ├── docs/guides/CONTRIBUTING.md                    ← How to contribute
 │
@@ -211,7 +212,11 @@ IrsanAI-ARIA-Protocol/
 ├── docs/agents/Claude IrsanAI - ARIA - Agent.md  ← Claude collaboration brief
 ├── reference/runtime/mission_orchestrator.py      ← Runtime scaffold
 ├── reference/runtime/execution_specialist.py      ← Runtime scaffold
+├── reference/runtime/interfaces.py                ← Runtime contracts
 ├── reference/interop/legacy_bridge_adapter.py     ← Legacy bridge adapter
+├── schemas/aria_packet.schema.json                ← Packet schema
+├── schemas/semantic_ack.schema.json               ← ACK schema
+├── schemas/rrc_capsule.schema.json                ← Replay capsule schema
 └── tests/conformance/test_semantic_ack_chain.py   ← Conformance tests
 ```
 

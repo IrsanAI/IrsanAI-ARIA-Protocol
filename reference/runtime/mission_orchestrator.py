@@ -2,6 +2,8 @@
 from dataclasses import dataclass, field
 from typing import Any, Dict, List
 
+from reference.runtime.validation import validate_aria_packet
+
 
 @dataclass
 class MissionPacket:
@@ -19,6 +21,17 @@ class MissionOrchestrator:
     def ingest_mission(self, packet: MissionPacket) -> MissionPacket:
         if not packet.mission_core:
             raise ValueError("mission_core is required")
+        validate_aria_packet({
+            "aria_version": packet.aria_version,
+            "channel_id": "003",
+            "origin_type": "AGENT",
+            "mission_core": packet.mission_core,
+            "constraints": packet.constraints,
+            "context_snapshot": packet.context_snapshot,
+            "intent_checksum": packet.intent_checksum,
+            "chain_depth": packet.chain_depth,
+            "timestamp_utc": "1970-01-01T00:00:00Z",
+        })
         return packet
 
     def compute_intent_checksum(self, packet: MissionPacket) -> str:

@@ -213,11 +213,15 @@ IrsanAI-ARIA-Protocol/
 ├── reference/runtime/mission_orchestrator.py      ← Runtime scaffold
 ├── reference/runtime/execution_specialist.py      ← Runtime scaffold
 ├── reference/runtime/interfaces.py                ← Runtime contracts
+├── reference/runtime/validation.py                ← Schema validation
+├── reference/runtime/thresholds.py                ← RFC-003 threshold profiles
+├── reference/runtime/rrc.py                       ← RFC-004 replay capsule emitter
 ├── reference/interop/legacy_bridge_adapter.py     ← Legacy bridge adapter
 ├── schemas/aria_packet.schema.json                ← Packet schema
 ├── schemas/semantic_ack.schema.json               ← ACK schema
 ├── schemas/rrc_capsule.schema.json                ← Replay capsule schema
-└── tests/conformance/test_semantic_ack_chain.py   ← Conformance tests
+├── tests/conformance/test_semantic_ack_chain.py   ← Conformance tests
+└── tests/conformance/test_threshold_profiles_and_rrc.py ← Threshold + RRC tests
 ```
 
 ---

@@ -7,6 +7,7 @@ from pathlib import Path
 
 from reference.runtime.execution_specialist import ExecutionSpecialist
 from reference.runtime.aria_ica import semantic_similarity
+from reference.runtime.calibration import evaluate_tier_matrix
 from reference.runtime.rrc import emit_rrc_capsule
 from reference.runtime.validation import validate_aria_packet, validate_rrc_capsule, validate_semantic_ack
 
@@ -53,6 +54,11 @@ def cmd_ica(args):
     print(json.dumps({"semantic_similarity": sim}))
 
 
+def cmd_calibrate(args):
+    report = evaluate_tier_matrix(args.matrix)
+    print(json.dumps(report))
+
+
 def main():
     p = argparse.ArgumentParser(prog="aria")
     sp = p.add_subparsers(dest="cmd", required=True)
@@ -72,6 +78,10 @@ def main():
     pi.add_argument("--source", required=True, help="JSON file with 5 source atoms")
     pi.add_argument("--received", required=True, help="JSON file with 5 received atoms")
     pi.set_defaults(func=cmd_ica)
+
+    pc = sp.add_parser("calibrate")
+    pc.add_argument("--matrix", required=True, help="JSON tier matrix path")
+    pc.set_defaults(func=cmd_calibrate)
 
     pr = sp.add_parser("rrc")
     pr.add_argument("--capsule-id", required=True)

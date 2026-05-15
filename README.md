@@ -207,7 +207,8 @@ IrsanAI-ARIA-Protocol/
 │
 ├── /specs (planned)                   ← Future RFCs extension set
 │   ├── ARIA-RFC-004 (planned)         ← Embedding model registry
-│   └── ARIA-RFC-005 (planned)         ← Quantum-resistant trust layer
+│   ├── ARIA-RFC-005_Interop_Compatibility_Profiles.md ← Interop profiles
+│   └── ARIA-RFC-006 (planned)         ← Quantum-resistant trust layer
 │
 ├── docs/agents/Claude IrsanAI - ARIA - Agent.md  ← Claude collaboration brief
 ├── reference/runtime/mission_orchestrator.py      ← Runtime scaffold
@@ -218,6 +219,7 @@ IrsanAI-ARIA-Protocol/
 ├── reference/runtime/rrc.py                       ← RFC-004 replay capsule emitter
 ├── reference/runtime/semantic.py                  ← Similarity + atom drift scoring
 ├── reference/runtime/aria_ica.py                  ← Minimal Intent Checksum baseline
+├── reference/runtime/calibration.py               ← Tier calibration logic
 ├── reference/runtime/accountability.py            ← Signed accountability events
 ├── reference/runtime/cli.py                       ← Minimal CLI (validate/ack/rrc)
 ├── reference/interop/legacy_bridge_adapter.py     ← Legacy bridge adapter
@@ -228,7 +230,9 @@ IrsanAI-ARIA-Protocol/
 ├── tests/conformance/test_threshold_profiles_and_rrc.py ← Threshold + RRC tests
 ├── tests/conformance/test_semantic_atoms_and_accountability.py ← Atom drift + signatures
 ├── tests/conformance/test_cli_and_rrc_extensions.py ← CLI + RRC extension tests
-└── tests/conformance/test_aria_ica_goldenset.py   ← ICA goldenset tests
+├── tests/conformance/test_aria_ica_goldenset.py   ← ICA goldenset tests
+├── tests/conformance/test_domain_tier_calibration.py ← Tier calibration tests
+└── tests/goldensets/domain_tier_matrix.json        ← 6-tier resonance matrix
 ```
 
 ---

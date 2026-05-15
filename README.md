@@ -217,6 +217,7 @@ IrsanAI-ARIA-Protocol/
 ├── reference/runtime/thresholds.py                ← RFC-003 threshold profiles
 ├── reference/runtime/rrc.py                       ← RFC-004 replay capsule emitter
 ├── reference/runtime/semantic.py                  ← Similarity + atom drift scoring
+├── reference/runtime/aria_ica.py                  ← Minimal Intent Checksum baseline
 ├── reference/runtime/accountability.py            ← Signed accountability events
 ├── reference/runtime/cli.py                       ← Minimal CLI (validate/ack/rrc)
 ├── reference/interop/legacy_bridge_adapter.py     ← Legacy bridge adapter
@@ -226,7 +227,8 @@ IrsanAI-ARIA-Protocol/
 ├── tests/conformance/test_semantic_ack_chain.py   ← Conformance tests
 ├── tests/conformance/test_threshold_profiles_and_rrc.py ← Threshold + RRC tests
 ├── tests/conformance/test_semantic_atoms_and_accountability.py ← Atom drift + signatures
-└── tests/conformance/test_cli_and_rrc_extensions.py ← CLI + RRC extension tests
+├── tests/conformance/test_cli_and_rrc_extensions.py ← CLI + RRC extension tests
+└── tests/conformance/test_aria_ica_goldenset.py   ← ICA goldenset tests
 ```
 
 ---

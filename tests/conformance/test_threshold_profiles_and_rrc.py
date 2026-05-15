@@ -41,9 +41,11 @@ def test_rrc_capsule_emission():
                 "recomputed_ic": "ic::1",
                 "ack_status": "ack_confirmed",
                 "delta_score": 0.0,
+                "chain_depth": 1,
             }
         ],
         final_outcome="completed",
         audit_signature="sig-1",
     )
     assert capsule["capsule_id"] == "rrc-1"
+    assert capsule["chain_depth_max"] == 1

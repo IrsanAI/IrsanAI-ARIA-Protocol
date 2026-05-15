@@ -160,7 +160,7 @@ Drift Detect:  Continuous monitoring across the entire chain.
 Retransmit:    Only the drifted semantic atom. Not the full context.
 ```
 
-→ Full specification: [ARIA-RFC-002](./ARIA-RFC-002_Intent_Checksum.md)
+→ Full specification: [ARIA-RFC-002](./docs/rfcs/ARIA-RFC-002_Intent_Checksum.md)
 
 ---
 
@@ -197,19 +197,22 @@ AGENT-FIRST   →  Human remains principal. Agent is primary user.
 IrsanAI-ARIA-Protocol/
 │
 ├── README.md                          ← You are here
-├── ARIA-RFC-001_Protocol_Stack.md     ← Full protocol specification
-├── ARIA-RFC-002_Intent_Checksum.md    ← Intent Checksum Algorithm
-├── CONTRIBUTING.md                    ← How to contribute
+├── docs/rfcs/ARIA-RFC-001_Protocol_Stack.md     ← Full protocol specification
+├── docs/rfcs/ARIA-RFC-002_Intent_Checksum.md    ← Intent Checksum Algorithm
+├── docs/guides/CONTRIBUTING.md                    ← How to contribute
 │
-├── ARIA-RFC-003_Domain_Thresholds.md  ← Domain threshold calibration
-├── REPO_INTENT_UNIQUENESS_ASSESSMENT.md ← Strategic analysis and roadmap
+├── docs/rfcs/ARIA-RFC-003_Domain_Thresholds.md  ← Domain threshold calibration
+├── docs/analysis/REPO_INTENT_UNIQUENESS_ASSESSMENT.md ← Strategic analysis and roadmap
 │
 ├── /specs (planned)                   ← Future RFCs extension set
 │   ├── ARIA-RFC-004 (planned)         ← Embedding model registry
 │   └── ARIA-RFC-005 (planned)         ← Quantum-resistant trust layer
 │
-└── /reference (planned)               ← Reference implementation
-    └── aria_ica.py (planned)          ← Intent Checksum Algorithm
+├── docs/agents/Claude IrsanAI - ARIA - Agent.md  ← Claude collaboration brief
+├── reference/runtime/mission_orchestrator.py      ← Runtime scaffold
+├── reference/runtime/execution_specialist.py      ← Runtime scaffold
+├── reference/interop/legacy_bridge_adapter.py     ← Legacy bridge adapter
+└── tests/conformance/test_semantic_ack_chain.py   ← Conformance tests
 ```
 
 ---
@@ -427,7 +430,7 @@ Drift-Erkennung: Kontinuierliche Überwachung über die gesamte Kette.
 Retransmit:      Nur das gedriftete semantische Atom. Nicht der volle Kontext.
 ```
 
-→ Vollständige Spezifikation: [ARIA-RFC-002](./ARIA-RFC-002_Intent_Checksum.md)
+→ Vollständige Spezifikation: [ARIA-RFC-002](./docs/rfcs/ARIA-RFC-002_Intent_Checksum.md)
 
 ---
 
@@ -542,6 +545,6 @@ Namensnennung erwünscht: *„Basierend auf dem ARIA-Protokoll — IrsanAI, 2025
 <div align="center">
 
 **ARIA Protocol** · IrsanAI · Vatertag 2025
-[RFC-001](./ARIA-RFC-001_Protocol_Stack.md) · [RFC-002](./ARIA-RFC-002_Intent_Checksum.md) · [Issues](https://github.com/IrsanAI/IrsanAI-ARIA-Protocol/issues) · [Discussions](https://github.com/IrsanAI/IrsanAI-ARIA-Protocol/discussions)
+[RFC-001](./docs/rfcs/ARIA-RFC-001_Protocol_Stack.md) · [RFC-002](./docs/rfcs/ARIA-RFC-002_Intent_Checksum.md) · [Issues](https://github.com/IrsanAI/IrsanAI-ARIA-Protocol/issues) · [Discussions](https://github.com/IrsanAI/IrsanAI-ARIA-Protocol/discussions)
 
 </div>

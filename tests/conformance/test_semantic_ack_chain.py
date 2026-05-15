@@ -1,4 +1,4 @@
-from reference.agents.execution_specialist import ExecutionSpecialist
+from reference.runtime.execution_specialist import ExecutionSpecialist
 
 
 def test_semantic_ack_confirmed():

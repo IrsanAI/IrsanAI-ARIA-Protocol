@@ -1,0 +1,152 @@
+"""Minimal ARIA CLI: validate | ack | ica | calibrate | interop-benchmark | hop-demo | rrc."""
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+
+from reference.runtime.execution_specialist import ExecutionSpecialist
+from reference.runtime.aria_ica import semantic_similarity
+from reference.runtime.calibration import evaluate_tier_matrix
+from reference.runtime.rrc import emit_rrc_capsule
+from reference.runtime.validation import validate_aria_packet, validate_rrc_capsule, validate_semantic_ack
+from reference.interop.benchmark import evaluate_roundtrip_suite
+from reference.runtime.hop_chain import run_hop_chain
+from reference.runtime.guardrails import guardrail_decision
+
+
+def _load_json(path: str):
+    return json.loads(Path(path).read_text())
+
+
+def cmd_validate(args):
+    data = _load_json(args.input)
+    if args.kind == "packet":
+        validate_aria_packet(data)
+    elif args.kind == "ack":
+        validate_semantic_ack(data)
+    elif args.kind == "rrc":
+        validate_rrc_capsule(data)
+    print("valid")
+
+
+def cmd_ack(args):
+    specialist = ExecutionSpecialist()
+    result = specialist.semantic_ack(args.received, args.recomputed, profile=args.profile)
+    print(json.dumps({"status": result.status, "delta": result.delta, "profile": args.profile}))
+
+
+def cmd_rrc(args):
+    hops = _load_json(args.hops)
+    events = _load_json(args.events) if args.events else []
+    capsule = emit_rrc_capsule(
+        capsule_id=args.capsule_id,
+        mission_fingerprint=args.mission_fingerprint,
+        hop_sequence=hops,
+        final_outcome=args.final_outcome,
+        audit_signature=args.audit_signature,
+        accountability_events=events,
+    )
+    print(json.dumps(capsule))
+
+
+def cmd_ica(args):
+    source = _load_json(args.source)
+    received = _load_json(args.received)
+    sim = semantic_similarity(source, received)
+    print(json.dumps({"semantic_similarity": sim}))
+
+
+def cmd_calibrate(args):
+    report = evaluate_tier_matrix(args.matrix)
+    print(json.dumps(report))
+
+
+def cmd_interop_benchmark(args):
+    report = evaluate_roundtrip_suite(args.fixtures)
+    print(json.dumps(report))
+
+
+def cmd_hop_demo(args):
+    source = _load_json(args.source)
+    report = run_hop_chain(
+        source_atoms=source,
+        hops=args.hops,
+        profile=args.profile,
+        mission_fingerprint=args.mission_fingerprint,
+        tier=args.tier,
+    )
+    print(json.dumps(report))
+
+
+def cmd_guardrail(args):
+    d = guardrail_decision(
+        similarity=args.similarity,
+        profile=args.profile,
+        tier=args.tier,
+        chain_depth=args.chain_depth,
+        moving_drift=args.moving_drift,
+    )
+    print(json.dumps(d))
+
+
+def main():
+    p = argparse.ArgumentParser(prog="aria")
+    sp = p.add_subparsers(dest="cmd", required=True)
+
+    pv = sp.add_parser("validate")
+    pv.add_argument("kind", choices=["packet", "ack", "rrc"])
+    pv.add_argument("input")
+    pv.set_defaults(func=cmd_validate)
+
+    pa = sp.add_parser("ack")
+    pa.add_argument("--received", required=True)
+    pa.add_argument("--recomputed", required=True)
+    pa.add_argument("--profile", default="balanced", choices=["strict", "balanced", "exploratory"])
+    pa.set_defaults(func=cmd_ack)
+
+    pi = sp.add_parser("ica")
+    pi.add_argument("--source", required=True, help="JSON file with 5 source atoms")
+    pi.add_argument("--received", required=True, help="JSON file with 5 received atoms")
+    pi.set_defaults(func=cmd_ica)
+
+    pc = sp.add_parser("calibrate")
+    pc.add_argument("--matrix", required=True, help="JSON tier matrix path")
+    pc.set_defaults(func=cmd_calibrate)
+
+    pb = sp.add_parser("interop-benchmark")
+    pb.add_argument("--fixtures", required=True, help="JSON fixtures for legacy roundtrip")
+    pb.set_defaults(func=cmd_interop_benchmark)
+
+
+    pg = sp.add_parser("guardrail")
+    pg.add_argument("--similarity", required=True, type=float)
+    pg.add_argument("--profile", default="strict", choices=["strict", "balanced", "exploratory"])
+    pg.add_argument("--tier", default="finance")
+    pg.add_argument("--chain-depth", type=int, default=1)
+    pg.add_argument("--moving-drift", type=float, default=0.0)
+    pg.set_defaults(func=cmd_guardrail)
+
+    ph = sp.add_parser("hop-demo")
+    ph.add_argument("--source", required=True, help="JSON file with 5 source atoms")
+    ph.add_argument("--hops", type=int, default=4)
+    ph.add_argument("--profile", default="strict", choices=["strict", "balanced", "exploratory"])
+    ph.add_argument("--mission-fingerprint", default="mf-hop-chain")
+    ph.add_argument("--tier", default="finance")
+    ph.set_defaults(func=cmd_hop_demo)
+
+    pr = sp.add_parser("rrc")
+    pr.add_argument("--capsule-id", required=True)
+    pr.add_argument("--mission-fingerprint", required=True)
+    pr.add_argument("--hops", required=True, help="JSON file with hop sequence array")
+    pr.add_argument("--final-outcome", required=True)
+    pr.add_argument("--audit-signature", required=True)
+    pr.add_argument("--events", help="optional JSON file with accountability events array")
+    pr.set_defaults(func=cmd_rrc)
+
+    args = p.parse_args()
+    args.func(args)
+
+
+if __name__ == "__main__":
+    main()

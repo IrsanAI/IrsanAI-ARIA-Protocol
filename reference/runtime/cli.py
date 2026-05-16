@@ -19,6 +19,7 @@ from reference.interop.benchmark_v2 import compare_profiles
 from reference.runtime.canary import run_canary_suite
 from reference.runtime.circuit_breaker import circuit_threshold_for_tier, next_circuit_state
 from reference.runtime.quorum import quorum_for_tier, evaluate_quorum
+from reference.runtime.meta_cognitive_router import build_role_map
 
 
 def _load_json(path: str):
@@ -149,6 +150,11 @@ def cmd_quorum(args):
     print(json.dumps(report))
 
 
+def cmd_rolemap(args):
+    role_map = build_role_map(task_id=args.task_id, task_text=args.task_text, activation_threshold=args.threshold)
+    print(json.dumps(role_map))
+
+
 def main():
     p = argparse.ArgumentParser(prog="aria")
     sp = p.add_subparsers(dest="cmd", required=True)
@@ -211,6 +217,12 @@ def main():
     pl.add_argument("--hops", required=True, help="JSON file containing hop list")
     pl.add_argument("--profile", default="strict", choices=["strict", "balanced", "exploratory"])
     pl.set_defaults(func=cmd_lineage)
+
+    prm = sp.add_parser("rolemap")
+    prm.add_argument("--task-id", required=True)
+    prm.add_argument("--task-text", required=True)
+    prm.add_argument("--threshold", type=float, default=0.3)
+    prm.set_defaults(func=cmd_rolemap)
 
     pq = sp.add_parser("quorum")
     pq.add_argument("--tier", default="finance")

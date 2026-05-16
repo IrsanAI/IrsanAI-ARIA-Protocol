@@ -91,6 +91,18 @@ def cmd_guardrail(args):
     print(json.dumps(d))
 
 
+def cmd_chain(args):
+    source = _load_json(args.source)
+    report = run_hop_chain(
+        source_atoms=source,
+        hops=args.hops,
+        profile=args.profile,
+        mission_fingerprint=args.mission_fingerprint,
+        tier=args.tier,
+    )
+    print(json.dumps(report))
+
+
 def cmd_lineage(args):
     hops = _load_json(args.hops)
     graph = build_intent_lineage_graph(args.mission_fingerprint, hops, args.profile)
@@ -141,6 +153,14 @@ def main():
     ph.add_argument("--mission-fingerprint", default="mf-hop-chain")
     ph.add_argument("--tier", default="finance")
     ph.set_defaults(func=cmd_hop_demo)
+
+    pcn = sp.add_parser("chain")
+    pcn.add_argument("--source", required=True, help="JSON file with 5 source atoms")
+    pcn.add_argument("--hops", type=int, default=4)
+    pcn.add_argument("--profile", default="strict", choices=["strict", "balanced", "exploratory"])
+    pcn.add_argument("--tier", default="finance")
+    pcn.add_argument("--mission-fingerprint", default="mf-chain")
+    pcn.set_defaults(func=cmd_chain)
 
     pl = sp.add_parser("lineage")
     pl.add_argument("--mission-fingerprint", required=True)

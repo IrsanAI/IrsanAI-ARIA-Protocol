@@ -220,6 +220,7 @@ IrsanAI-ARIA-Protocol/
 ├── reference/runtime/thresholds.py                ← RFC-003 threshold profiles
 ├── reference/runtime/rrc.py                       ← RFC-004 replay capsule emitter
 ├── reference/runtime/semantic.py                  ← Similarity + atom drift scoring
+├── reference/runtime/embeddings.py                ← Lexical + optional ST embeddings
 ├── reference/runtime/aria_ica.py                  ← Minimal Intent Checksum baseline
 ├── reference/runtime/calibration.py               ← Tier calibration logic
 ├── reference/runtime/hop_chain.py                 ← 3-4 hop drift PoC + RRC

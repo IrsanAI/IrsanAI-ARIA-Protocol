@@ -208,7 +208,8 @@ IrsanAI-ARIA-Protocol/
 ├── /specs (planned)                   ← Future RFCs extension set
 │   ├── ARIA-RFC-004 (planned)         ← Embedding model registry
 │   ├── ARIA-RFC-005_Interop_Compatibility_Profiles.md ← Interop profiles
-│   └── ARIA-RFC-006 (planned)         ← Quantum-resistant trust layer
+│   ├── ARIA-RFC-006_Resonance_Guardrails.md ← Pre-handoff guardrail gateway
+│   └── ARIA-RFC-007 (planned)         ← Quantum-resistant trust layer
 │
 ├── docs/agents/Claude IrsanAI - ARIA - Agent.md  ← Claude collaboration brief
 ├── reference/runtime/mission_orchestrator.py      ← Runtime scaffold
@@ -221,6 +222,7 @@ IrsanAI-ARIA-Protocol/
 ├── reference/runtime/aria_ica.py                  ← Minimal Intent Checksum baseline
 ├── reference/runtime/calibration.py               ← Tier calibration logic
 ├── reference/runtime/hop_chain.py                 ← 3-4 hop drift PoC + RRC
+├── reference/runtime/guardrails.py                ← Resonance Guardrails Gateway
 ├── reference/runtime/accountability.py            ← Signed accountability events
 ├── reference/runtime/cli.py                       ← Minimal CLI (validate/ack/rrc)
 ├── reference/interop/legacy_bridge_adapter.py     ← Legacy bridge adapter
@@ -239,7 +241,8 @@ IrsanAI-ARIA-Protocol/
 ├── tests/conformance/test_interop_benchmark.py    ← Interop benchmark tests
 ├── benchmarks/interop_report.py                    ← Benchmark report generator
 ├── fixtures/interop/hop_demo_source_atoms.json     ← Hop demo source atoms
-└── tests/conformance/test_hop_chain_demo.py        ← Multi-hop drift PoC tests
+├── tests/conformance/test_hop_chain_demo.py        ← Multi-hop drift PoC tests
+└── tests/conformance/test_guardrails_gateway.py    ← Guardrail policy tests
 ```
 
 ---

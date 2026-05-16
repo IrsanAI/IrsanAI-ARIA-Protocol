@@ -12,6 +12,7 @@ from reference.runtime.rrc import emit_rrc_capsule
 from reference.runtime.validation import validate_aria_packet, validate_rrc_capsule, validate_semantic_ack
 from reference.interop.benchmark import evaluate_roundtrip_suite
 from reference.runtime.hop_chain import run_hop_chain
+from reference.runtime.guardrails import guardrail_decision
 
 
 def _load_json(path: str):
@@ -73,8 +74,20 @@ def cmd_hop_demo(args):
         hops=args.hops,
         profile=args.profile,
         mission_fingerprint=args.mission_fingerprint,
+        tier=args.tier,
     )
     print(json.dumps(report))
+
+
+def cmd_guardrail(args):
+    d = guardrail_decision(
+        similarity=args.similarity,
+        profile=args.profile,
+        tier=args.tier,
+        chain_depth=args.chain_depth,
+        moving_drift=args.moving_drift,
+    )
+    print(json.dumps(d))
 
 
 def main():
@@ -106,11 +119,20 @@ def main():
     pb.set_defaults(func=cmd_interop_benchmark)
 
 
+    pg = sp.add_parser("guardrail")
+    pg.add_argument("--similarity", required=True, type=float)
+    pg.add_argument("--profile", default="strict", choices=["strict", "balanced", "exploratory"])
+    pg.add_argument("--tier", default="finance")
+    pg.add_argument("--chain-depth", type=int, default=1)
+    pg.add_argument("--moving-drift", type=float, default=0.0)
+    pg.set_defaults(func=cmd_guardrail)
+
     ph = sp.add_parser("hop-demo")
     ph.add_argument("--source", required=True, help="JSON file with 5 source atoms")
     ph.add_argument("--hops", type=int, default=4)
     ph.add_argument("--profile", default="strict", choices=["strict", "balanced", "exploratory"])
     ph.add_argument("--mission-fingerprint", default="mf-hop-chain")
+    ph.add_argument("--tier", default="finance")
     ph.set_defaults(func=cmd_hop_demo)
 
     pr = sp.add_parser("rrc")

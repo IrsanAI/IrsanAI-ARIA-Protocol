@@ -1,0 +1,32 @@
+{
+  "cases": [
+    {
+      "id": "finance_limit_order",
+      "legacy_input": {
+        "goal": "buy apple stock",
+        "constraints": ["max 10000 eur", "blue chips only"],
+        "context": {"risk_class": "moderate", "portfolio": "core"},
+        "intent_checksum": "ic::fin-001",
+        "chain_depth": 0
+      },
+      "expected": {
+        "mission_core": "buy apple stock",
+        "constraints": ["max 10000 eur", "blue chips only"]
+      }
+    },
+    {
+      "id": "healthcare_reminder",
+      "legacy_input": {
+        "goal": "set medication reminder",
+        "constraints": ["no dosage change"],
+        "context": {"timezone": "UTC", "regimen": "daily"},
+        "intent_checksum": "ic::med-001",
+        "chain_depth": 1
+      },
+      "expected": {
+        "mission_core": "set medication reminder",
+        "constraints": ["no dosage change"]
+      }
+    }
+  ]
+}

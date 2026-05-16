@@ -193,3 +193,17 @@ Claude: you are building the IrsanAI ARIA Agent System.
 Codex: is building and refining the ARIA Protocol standard.  
 **Both are one coordinated team in this repo, by explicit request of IrsanAI.**
 
+
+
+---
+
+## Status Update (Codex takeover, 2026-05-16)
+
+Codex has integrated the Claude handoff into the repository with v2 runtime modules:
+
+- `reference/runtime/mission_orchestrator_v2.py`
+- `reference/runtime/execution_specialist_v2.py`
+- `reference/interop/legacy_bridge_adapter_v2.py`
+- `tests/conformance/test_claude_handoff_v2.py`
+
+This preserves existing runtime modules while providing a stronger, protocol-aligned migration path from the earlier Claude drafts.

@@ -215,7 +215,8 @@ IrsanAI-ARIA-Protocol/
 │   ├── ARIA-RFC-010_Resonance_Circuit_Breaker.md ← Risk-density auto-stop
 │   ├── ARIA-RFC-011_Semantic_Consensus_Quorum.md ← Multi-agent agreement gate
 │   ├── ARIA-RFC-012_Cognitive_Role_Architecture.md ← Role-based meta-cognition
-│   └── ARIA-RFC-013 (planned)         ← Quantum-resistant trust layer
+│   ├── ARIA-RFC-013_Agent_Capability_Registry.md ← Agent capability discovery
+│   └── ARIA-RFC-014 (planned)         ← Quantum-resistant trust layer
 │
 ├── docs/agents/Claude IrsanAI - ARIA - Agent.md  ← Claude collaboration brief
 ├── reference/runtime/mission_orchestrator.py      ← Runtime scaffold
@@ -237,6 +238,7 @@ IrsanAI-ARIA-Protocol/
 ├── reference/runtime/circuit_breaker.py           ← Repeated-risk auto-stop
 ├── reference/runtime/quorum.py                    ← Multi-agent semantic quorum
 ├── reference/runtime/meta_cognitive_router.py     ← Cognitive role mapping
+├── reference/runtime/agent_registry.py            ← Agent capability registry
 ├── reference/runtime/cli.py                       ← Minimal CLI (validate/ack/rrc)
 ├── reference/interop/legacy_bridge_adapter.py     ← Legacy bridge adapter
 ├── reference/interop/benchmark.py                 ← Legacy↔ARIA drift benchmark

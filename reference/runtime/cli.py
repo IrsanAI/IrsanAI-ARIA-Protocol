@@ -20,6 +20,7 @@ from reference.runtime.canary import run_canary_suite
 from reference.runtime.circuit_breaker import circuit_threshold_for_tier, next_circuit_state
 from reference.runtime.quorum import quorum_for_tier, evaluate_quorum
 from reference.runtime.meta_cognitive_router import build_role_map
+from reference.runtime.agent_registry import AgentCapabilityCard, AgentRegistry
 
 
 def _load_json(path: str):
@@ -155,6 +156,28 @@ def cmd_rolemap(args):
     print(json.dumps(role_map))
 
 
+_REG = AgentRegistry()
+
+
+def cmd_register_agent(args):
+    card = AgentCapabilityCard(
+        agent_id=args.agent_id,
+        agent_type=args.agent_type,
+        aria_version=args.aria_version,
+        roles=args.roles.split(",") if args.roles else [],
+        domains=args.domains.split(",") if args.domains else [],
+        extensions=args.extensions.split(",") if args.extensions else [],
+        trust_level=args.trust_level,
+        latency_class=args.latency_class,
+    )
+    _REG.register(card)
+    print(json.dumps({"registered": card.agent_id}))
+
+
+def cmd_registry_snapshot(args):
+    print(json.dumps(_REG.snapshot()))
+
+
 def main():
     p = argparse.ArgumentParser(prog="aria")
     sp = p.add_subparsers(dest="cmd", required=True)
@@ -217,6 +240,20 @@ def main():
     pl.add_argument("--hops", required=True, help="JSON file containing hop list")
     pl.add_argument("--profile", default="strict", choices=["strict", "balanced", "exploratory"])
     pl.set_defaults(func=cmd_lineage)
+
+    pra = sp.add_parser("register-agent")
+    pra.add_argument("--agent-id", required=True)
+    pra.add_argument("--agent-type", required=True)
+    pra.add_argument("--aria-version", default="0.1")
+    pra.add_argument("--roles", default="")
+    pra.add_argument("--domains", default="")
+    pra.add_argument("--extensions", default="")
+    pra.add_argument("--trust-level", default="VERIFIED")
+    pra.add_argument("--latency-class", default="standard")
+    pra.set_defaults(func=cmd_register_agent)
+
+    prs = sp.add_parser("registry-snapshot")
+    prs.set_defaults(func=cmd_registry_snapshot)
 
     prm = sp.add_parser("rolemap")
     prm.add_argument("--task-id", required=True)

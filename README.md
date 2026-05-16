@@ -160,7 +160,7 @@ Drift Detect:  Continuous monitoring across the entire chain.
 Retransmit:    Only the drifted semantic atom. Not the full context.
 ```
 
-→ Full specification: [ARIA-RFC-002](./ARIA-RFC-002_Intent_Checksum.md)
+→ Full specification: [ARIA-RFC-002](./docs/rfcs/ARIA-RFC-002_Intent_Checksum.md)
 
 ---
 
@@ -197,17 +197,66 @@ AGENT-FIRST   →  Human remains principal. Agent is primary user.
 IrsanAI-ARIA-Protocol/
 │
 ├── README.md                          ← You are here
-├── ARIA-RFC-001_Protocol_Stack.md     ← Full protocol specification
-├── ARIA-RFC-002_Intent_Checksum.md    ← Intent Checksum Algorithm
-├── CONTRIBUTING.md                    ← How to contribute (coming)
+├── docs/rfcs/ARIA-RFC-001_Protocol_Stack.md     ← Full protocol specification
+├── docs/README_ARCHITECTURE.md               ← Architecture and intent compass
+├── docs/rfcs/ARIA-RFC-002_Intent_Checksum.md    ← Intent Checksum Algorithm
+├── docs/guides/CONTRIBUTING.md                    ← How to contribute
 │
-├── /specs                             ← Future RFCs
-│   ├── ARIA-RFC-003 (planned)         ← Domain threshold calibration
+├── docs/rfcs/ARIA-RFC-003_Domain_Thresholds.md  ← Domain threshold calibration
+├── docs/analysis/REPO_INTENT_UNIQUENESS_ASSESSMENT.md ← Strategic analysis and roadmap
+│
+├── /specs (planned)                   ← Future RFCs extension set
 │   ├── ARIA-RFC-004 (planned)         ← Embedding model registry
-│   └── ARIA-RFC-005 (planned)         ← Quantum-resistant trust layer
+│   ├── ARIA-RFC-005_Interop_Compatibility_Profiles.md ← Interop profiles
+│   ├── ARIA-RFC-006_Resonance_Guardrails.md ← Pre-handoff guardrail gateway
+│   ├── ARIA-RFC-007_Intent_Lineage_Graph.md ← Branching lineage graph
+│   ├── ARIA-RFC-008_Resonance_Budget_Envelope.md ← Cumulative drift budget
+│   ├── ARIA-RFC-009_Resonance_Canary_Suite.md ← Regression-safety canary suite
+│   ├── ARIA-RFC-010_Resonance_Circuit_Breaker.md ← Risk-density auto-stop
+│   ├── ARIA-RFC-011_Semantic_Consensus_Quorum.md ← Multi-agent agreement gate
+│   └── ARIA-RFC-012 (planned)         ← Quantum-resistant trust layer
 │
-└── /reference                         ← Reference implementation (coming)
-    └── aria_ica.py                    ← Intent Checksum Algorithm
+├── docs/agents/Claude IrsanAI - ARIA - Agent.md  ← Claude collaboration brief
+├── reference/runtime/mission_orchestrator.py      ← Runtime scaffold
+├── reference/runtime/execution_specialist.py      ← Runtime scaffold
+├── reference/runtime/interfaces.py                ← Runtime contracts
+├── reference/runtime/validation.py                ← Schema validation
+├── reference/runtime/thresholds.py                ← RFC-003 threshold profiles
+├── reference/runtime/rrc.py                       ← RFC-004 replay capsule emitter
+├── reference/runtime/semantic.py                  ← Similarity + atom drift scoring
+├── reference/runtime/embeddings.py                ← Lexical + optional ST embeddings
+├── reference/runtime/aria_ica.py                  ← Minimal Intent Checksum baseline
+├── reference/runtime/calibration.py               ← Tier calibration logic
+├── reference/runtime/hop_chain.py                 ← 3-4 hop drift PoC + RRC
+├── reference/runtime/guardrails.py                ← Resonance Guardrails Gateway
+├── reference/runtime/lineage.py                   ← Intent lineage graph builder
+├── reference/runtime/accountability.py            ← Signed accountability events
+├── reference/runtime/budget.py                    ← Resonance budget envelope
+├── reference/runtime/canary.py                    ← Canary regression evaluator
+├── reference/runtime/circuit_breaker.py           ← Repeated-risk auto-stop
+├── reference/runtime/quorum.py                    ← Multi-agent semantic quorum
+├── reference/runtime/cli.py                       ← Minimal CLI (validate/ack/rrc)
+├── reference/interop/legacy_bridge_adapter.py     ← Legacy bridge adapter
+├── reference/interop/benchmark.py                 ← Legacy↔ARIA drift benchmark
+├── reference/interop/benchmark_v2.py              ← Profile comparison benchmark
+├── schemas/aria_packet.schema.json                ← Packet schema
+├── schemas/semantic_ack.schema.json               ← ACK schema
+├── schemas/rrc_capsule.schema.json                ← Replay capsule schema
+├── tests/conformance/test_semantic_ack_chain.py   ← Conformance tests
+├── tests/conformance/test_threshold_profiles_and_rrc.py ← Threshold + RRC tests
+├── tests/conformance/test_semantic_atoms_and_accountability.py ← Atom drift + signatures
+├── tests/conformance/test_cli_and_rrc_extensions.py ← CLI + RRC extension tests
+├── tests/conformance/test_aria_ica_goldenset.py   ← ICA goldenset tests
+├── tests/conformance/test_domain_tier_calibration.py ← Tier calibration tests
+├── tests/goldensets/domain_tier_matrix.json        ← 6-tier resonance matrix
+├── fixtures/interop/legacy_roundtrip_cases.json   ← Interop roundtrip fixtures
+├── tests/conformance/test_interop_benchmark.py    ← Interop benchmark tests
+├── benchmarks/interop_report.py                    ← Benchmark report generator
+├── fixtures/interop/hop_demo_source_atoms.json     ← Hop demo source atoms
+├── fixtures/interop/legacy_roundtrip_lossy_cases.json ← Lossy interop fixtures
+├── tests/conformance/test_hop_chain_demo.py        ← Multi-hop drift PoC tests
+├── tests/conformance/test_guardrails_gateway.py    ← Guardrail policy tests
+└── tests/conformance/test_intent_lineage_graph.py  ← Lineage graph tests
 ```
 
 ---
@@ -425,7 +474,7 @@ Drift-Erkennung: Kontinuierliche Überwachung über die gesamte Kette.
 Retransmit:      Nur das gedriftete semantische Atom. Nicht der volle Kontext.
 ```
 
-→ Vollständige Spezifikation: [ARIA-RFC-002](./ARIA-RFC-002_Intent_Checksum.md)
+→ Vollständige Spezifikation: [ARIA-RFC-002](./docs/rfcs/ARIA-RFC-002_Intent_Checksum.md)
 
 ---
 
@@ -540,6 +589,6 @@ Namensnennung erwünscht: *„Basierend auf dem ARIA-Protokoll — IrsanAI, 2025
 <div align="center">
 
 **ARIA Protocol** · IrsanAI · Vatertag 2025
-[RFC-001](./ARIA-RFC-001_Protocol_Stack.md) · [RFC-002](./ARIA-RFC-002_Intent_Checksum.md) · [Issues](https://github.com/IrsanAI/IrsanAI-ARIA-Protocol/issues) · [Discussions](https://github.com/IrsanAI/IrsanAI-ARIA-Protocol/discussions)
+[RFC-001](./docs/rfcs/ARIA-RFC-001_Protocol_Stack.md) · [RFC-002](./docs/rfcs/ARIA-RFC-002_Intent_Checksum.md) · [Issues](https://github.com/IrsanAI/IrsanAI-ARIA-Protocol/issues) · [Discussions](https://github.com/IrsanAI/IrsanAI-ARIA-Protocol/discussions)
 
 </div>

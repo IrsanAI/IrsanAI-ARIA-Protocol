@@ -1,0 +1,42 @@
+{
+  "cases": [
+    {
+      "id": "finance_equivalent",
+      "tier": "high_risk",
+      "source": {
+        "core_intent": "buy apple stock",
+        "constraints": "max 10000 eur blue chips only",
+        "context_dependencies": "portfolio state risk class",
+        "success_condition": "order executed confirmed",
+        "failure_condition": "halt on unrecoverable error"
+      },
+      "received": {
+        "core_intent": "purchase aapl shares",
+        "constraints": "up to 10000 eur blue chip equities only",
+        "context_dependencies": "portfolio status and risk class",
+        "success_condition": "trade executed and confirmed",
+        "failure_condition": "stop on unrecoverable error"
+      },
+      "expected_min_similarity": 0.35
+    },
+    {
+      "id": "finance_drifted",
+      "tier": "high_risk",
+      "source": {
+        "core_intent": "buy apple stock",
+        "constraints": "max 10000 eur blue chips only",
+        "context_dependencies": "portfolio state risk class",
+        "success_condition": "order executed confirmed",
+        "failure_condition": "halt on unrecoverable error"
+      },
+      "received": {
+        "core_intent": "invest in technology sector",
+        "constraints": "no max limit",
+        "context_dependencies": "market trend only",
+        "success_condition": "sector exposure increased",
+        "failure_condition": "none"
+      },
+      "expected_max_similarity": 0.4
+    }
+  ]
+}

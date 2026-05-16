@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://irsan.ai/schemas/guardrail_decision.schema.json",
+  "title": "Resonance Guardrail Decision",
+  "type": "object",
+  "required": ["mode", "reason", "similarity", "profile", "tier", "chain_depth"],
+  "properties": {
+    "mode": {"type": "string", "enum": ["allow", "review", "block"]},
+    "reason": {"type": "string"},
+    "similarity": {"type": "number", "minimum": 0, "maximum": 1},
+    "profile": {"type": "string", "enum": ["strict", "balanced", "exploratory"]},
+    "tier": {"type": "string"},
+    "chain_depth": {"type": "integer", "minimum": 0}
+  },
+  "additionalProperties": true
+}

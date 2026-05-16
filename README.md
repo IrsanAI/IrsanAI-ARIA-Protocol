@@ -213,7 +213,8 @@ IrsanAI-ARIA-Protocol/
 │   ├── ARIA-RFC-008_Resonance_Budget_Envelope.md ← Cumulative drift budget
 │   ├── ARIA-RFC-009_Resonance_Canary_Suite.md ← Regression-safety canary suite
 │   ├── ARIA-RFC-010_Resonance_Circuit_Breaker.md ← Risk-density auto-stop
-│   └── ARIA-RFC-011 (planned)         ← Quantum-resistant trust layer
+│   ├── ARIA-RFC-011_Semantic_Consensus_Quorum.md ← Multi-agent agreement gate
+│   └── ARIA-RFC-012 (planned)         ← Quantum-resistant trust layer
 │
 ├── docs/agents/Claude IrsanAI - ARIA - Agent.md  ← Claude collaboration brief
 ├── reference/runtime/mission_orchestrator.py      ← Runtime scaffold
@@ -233,6 +234,7 @@ IrsanAI-ARIA-Protocol/
 ├── reference/runtime/budget.py                    ← Resonance budget envelope
 ├── reference/runtime/canary.py                    ← Canary regression evaluator
 ├── reference/runtime/circuit_breaker.py           ← Repeated-risk auto-stop
+├── reference/runtime/quorum.py                    ← Multi-agent semantic quorum
 ├── reference/runtime/cli.py                       ← Minimal CLI (validate/ack/rrc)
 ├── reference/interop/legacy_bridge_adapter.py     ← Legacy bridge adapter
 ├── reference/interop/benchmark.py                 ← Legacy↔ARIA drift benchmark

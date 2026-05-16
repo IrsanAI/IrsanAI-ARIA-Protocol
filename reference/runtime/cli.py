@@ -18,6 +18,7 @@ from reference.runtime.budget import budget_for_tier, update_budget
 from reference.interop.benchmark_v2 import compare_profiles
 from reference.runtime.canary import run_canary_suite
 from reference.runtime.circuit_breaker import circuit_threshold_for_tier, next_circuit_state
+from reference.runtime.quorum import quorum_for_tier, evaluate_quorum
 
 
 def _load_json(path: str):
@@ -141,6 +142,13 @@ def cmd_circuit(args):
     print(json.dumps(out))
 
 
+def cmd_quorum(args):
+    votes = _load_json(args.votes)
+    q = args.quorum_ratio if args.quorum_ratio is not None else quorum_for_tier(args.tier)
+    report = evaluate_quorum(votes=votes, quorum_ratio=q)
+    print(json.dumps(report))
+
+
 def main():
     p = argparse.ArgumentParser(prog="aria")
     sp = p.add_subparsers(dest="cmd", required=True)
@@ -203,6 +211,12 @@ def main():
     pl.add_argument("--hops", required=True, help="JSON file containing hop list")
     pl.add_argument("--profile", default="strict", choices=["strict", "balanced", "exploratory"])
     pl.set_defaults(func=cmd_lineage)
+
+    pq = sp.add_parser("quorum")
+    pq.add_argument("--tier", default="finance")
+    pq.add_argument("--votes", required=True, help="JSON file with vote list")
+    pq.add_argument("--quorum-ratio", type=float)
+    pq.set_defaults(func=cmd_quorum)
 
     pcb = sp.add_parser("circuit")
     pcb.add_argument("--tier", default="finance")

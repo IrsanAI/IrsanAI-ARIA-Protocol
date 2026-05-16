@@ -10,6 +10,7 @@ from reference.runtime.aria_ica import semantic_similarity
 from reference.runtime.calibration import evaluate_tier_matrix
 from reference.runtime.rrc import emit_rrc_capsule
 from reference.runtime.validation import validate_aria_packet, validate_rrc_capsule, validate_semantic_ack
+from reference.interop.benchmark import evaluate_roundtrip_suite
 
 
 def _load_json(path: str):
@@ -59,6 +60,11 @@ def cmd_calibrate(args):
     print(json.dumps(report))
 
 
+def cmd_interop_benchmark(args):
+    report = evaluate_roundtrip_suite(args.fixtures)
+    print(json.dumps(report))
+
+
 def main():
     p = argparse.ArgumentParser(prog="aria")
     sp = p.add_subparsers(dest="cmd", required=True)
@@ -82,6 +88,10 @@ def main():
     pc = sp.add_parser("calibrate")
     pc.add_argument("--matrix", required=True, help="JSON tier matrix path")
     pc.set_defaults(func=cmd_calibrate)
+
+    pb = sp.add_parser("interop-benchmark")
+    pb.add_argument("--fixtures", required=True, help="JSON fixtures for legacy roundtrip")
+    pb.set_defaults(func=cmd_interop_benchmark)
 
     pr = sp.add_parser("rrc")
     pr.add_argument("--capsule-id", required=True)

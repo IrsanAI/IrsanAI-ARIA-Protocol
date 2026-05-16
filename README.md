@@ -223,6 +223,7 @@ IrsanAI-ARIA-Protocol/
 ├── reference/runtime/accountability.py            ← Signed accountability events
 ├── reference/runtime/cli.py                       ← Minimal CLI (validate/ack/rrc)
 ├── reference/interop/legacy_bridge_adapter.py     ← Legacy bridge adapter
+├── reference/interop/benchmark.py                 ← Legacy↔ARIA drift benchmark
 ├── schemas/aria_packet.schema.json                ← Packet schema
 ├── schemas/semantic_ack.schema.json               ← ACK schema
 ├── schemas/rrc_capsule.schema.json                ← Replay capsule schema
@@ -232,7 +233,10 @@ IrsanAI-ARIA-Protocol/
 ├── tests/conformance/test_cli_and_rrc_extensions.py ← CLI + RRC extension tests
 ├── tests/conformance/test_aria_ica_goldenset.py   ← ICA goldenset tests
 ├── tests/conformance/test_domain_tier_calibration.py ← Tier calibration tests
-└── tests/goldensets/domain_tier_matrix.json        ← 6-tier resonance matrix
+├── tests/goldensets/domain_tier_matrix.json        ← 6-tier resonance matrix
+├── fixtures/interop/legacy_roundtrip_cases.json   ← Interop roundtrip fixtures
+├── tests/conformance/test_interop_benchmark.py    ← Interop benchmark tests
+└── benchmarks/interop_report.py                    ← Benchmark report generator
 ```
 
 ---

@@ -13,6 +13,7 @@ from reference.runtime.validation import validate_aria_packet, validate_rrc_caps
 from reference.interop.benchmark import evaluate_roundtrip_suite
 from reference.runtime.hop_chain import run_hop_chain
 from reference.runtime.guardrails import guardrail_decision
+from reference.runtime.lineage import build_intent_lineage_graph
 
 
 def _load_json(path: str):
@@ -90,6 +91,12 @@ def cmd_guardrail(args):
     print(json.dumps(d))
 
 
+def cmd_lineage(args):
+    hops = _load_json(args.hops)
+    graph = build_intent_lineage_graph(args.mission_fingerprint, hops, args.profile)
+    print(json.dumps(graph))
+
+
 def main():
     p = argparse.ArgumentParser(prog="aria")
     sp = p.add_subparsers(dest="cmd", required=True)
@@ -134,6 +141,12 @@ def main():
     ph.add_argument("--mission-fingerprint", default="mf-hop-chain")
     ph.add_argument("--tier", default="finance")
     ph.set_defaults(func=cmd_hop_demo)
+
+    pl = sp.add_parser("lineage")
+    pl.add_argument("--mission-fingerprint", required=True)
+    pl.add_argument("--hops", required=True, help="JSON file containing hop list")
+    pl.add_argument("--profile", default="strict", choices=["strict", "balanced", "exploratory"])
+    pl.set_defaults(func=cmd_lineage)
 
     pr = sp.add_parser("rrc")
     pr.add_argument("--capsule-id", required=True)

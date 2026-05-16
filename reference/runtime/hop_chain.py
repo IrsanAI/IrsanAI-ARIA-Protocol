@@ -9,6 +9,7 @@ from reference.runtime.execution_specialist import ExecutionSpecialist
 from reference.runtime.rrc import emit_rrc_capsule
 from reference.runtime.accountability import create_accountability_event, sign_event
 from reference.runtime.guardrails import guardrail_decision
+from reference.runtime.budget import budget_for_tier, update_budget
 
 
 @dataclass
@@ -44,6 +45,7 @@ def run_hop_chain(
 
     previous = dict(source_atoms)
     drift_history: List[float] = []
+    budget = {"budget_max": budget_for_tier(tier), "budget_used": 0.0, "budget_remaining": budget_for_tier(tier), "status": "within_budget"}
     for i in range(1, hops + 1):
         current = _drifted_atoms(previous, i)
         sim = semantic_similarity(source_atoms, current)
@@ -79,18 +81,24 @@ def run_hop_chain(
                 "guardrail_mode": guard["mode"],
             }
         )
+        budget = update_budget(
+            budget_max=budget["budget_max"],
+            budget_used=budget["budget_used"],
+            drift_delta=drift_delta,
+        )
+
         evt = create_accountability_event(
             event_type=f"{ack.status}:{guard["mode"]}",
             agent_id=f"agent-{i}",
             chain_depth=i,
             mission_fingerprint=mission_fingerprint,
-            metadata={"similarity": sim, "drift_delta": drift_delta},
+            metadata={"similarity": sim, "drift_delta": drift_delta, "budget": budget},
         )
         evt["signature"] = sign_event(evt, secret="aria-hop-chain-secret")
         events.append(evt)
         drift_history.append(drift_delta)
         previous = current
-        if guard["mode"] == "block":
+        if guard["mode"] == "block" or budget["status"] == "exhausted":
             break
 
     final_outcome = "completed" if all(h.ack_status == "ack_confirmed" for h in hop_results) else "escalated"
@@ -103,8 +111,10 @@ def run_hop_chain(
         accountability_events=events,
     )
 
+    capsule["resonance_budget"] = budget
     return {
         "final_outcome": final_outcome,
         "hops": [h.__dict__ for h in hop_results],
         "rrc_capsule": capsule,
+        "resonance_budget": budget,
     }

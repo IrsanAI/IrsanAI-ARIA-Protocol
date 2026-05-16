@@ -14,6 +14,7 @@ from reference.interop.benchmark import evaluate_roundtrip_suite
 from reference.runtime.hop_chain import run_hop_chain
 from reference.runtime.guardrails import guardrail_decision
 from reference.runtime.lineage import build_intent_lineage_graph
+from reference.runtime.budget import budget_for_tier, update_budget
 from reference.interop.benchmark_v2 import compare_profiles
 
 
@@ -115,6 +116,12 @@ def cmd_interop_compare(args):
     print(json.dumps(report))
 
 
+def cmd_budget(args):
+    bmax = args.budget_max if args.budget_max is not None else budget_for_tier(args.tier)
+    report = update_budget(budget_max=bmax, budget_used=args.budget_used, drift_delta=args.drift_delta)
+    print(json.dumps(report))
+
+
 def main():
     p = argparse.ArgumentParser(prog="aria")
     sp = p.add_subparsers(dest="cmd", required=True)
@@ -177,6 +184,13 @@ def main():
     pl.add_argument("--hops", required=True, help="JSON file containing hop list")
     pl.add_argument("--profile", default="strict", choices=["strict", "balanced", "exploratory"])
     pl.set_defaults(func=cmd_lineage)
+
+    pbg = sp.add_parser("budget")
+    pbg.add_argument("--tier", default="finance")
+    pbg.add_argument("--budget-max", type=float)
+    pbg.add_argument("--budget-used", type=float, default=0.0)
+    pbg.add_argument("--drift-delta", type=float, required=True)
+    pbg.set_defaults(func=cmd_budget)
 
     pr = sp.add_parser("rrc")
     pr.add_argument("--capsule-id", required=True)

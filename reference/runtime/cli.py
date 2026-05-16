@@ -14,6 +14,7 @@ from reference.interop.benchmark import evaluate_roundtrip_suite
 from reference.runtime.hop_chain import run_hop_chain
 from reference.runtime.guardrails import guardrail_decision
 from reference.runtime.lineage import build_intent_lineage_graph
+from reference.interop.benchmark_v2 import compare_profiles
 
 
 def _load_json(path: str):
@@ -109,6 +110,11 @@ def cmd_lineage(args):
     print(json.dumps(graph))
 
 
+def cmd_interop_compare(args):
+    report = compare_profiles(args.fixtures)
+    print(json.dumps(report))
+
+
 def main():
     p = argparse.ArgumentParser(prog="aria")
     sp = p.add_subparsers(dest="cmd", required=True)
@@ -161,6 +167,10 @@ def main():
     pcn.add_argument("--tier", default="finance")
     pcn.add_argument("--mission-fingerprint", default="mf-chain")
     pcn.set_defaults(func=cmd_chain)
+
+    px = sp.add_parser("interop-compare")
+    px.add_argument("--fixtures", required=True, help="lossy roundtrip fixtures")
+    px.set_defaults(func=cmd_interop_compare)
 
     pl = sp.add_parser("lineage")
     pl.add_argument("--mission-fingerprint", required=True)

@@ -230,6 +230,7 @@ IrsanAI-ARIA-Protocol/
 ├── reference/runtime/cli.py                       ← Minimal CLI (validate/ack/rrc)
 ├── reference/interop/legacy_bridge_adapter.py     ← Legacy bridge adapter
 ├── reference/interop/benchmark.py                 ← Legacy↔ARIA drift benchmark
+├── reference/interop/benchmark_v2.py              ← Profile comparison benchmark
 ├── schemas/aria_packet.schema.json                ← Packet schema
 ├── schemas/semantic_ack.schema.json               ← ACK schema
 ├── schemas/rrc_capsule.schema.json                ← Replay capsule schema
@@ -244,6 +245,7 @@ IrsanAI-ARIA-Protocol/
 ├── tests/conformance/test_interop_benchmark.py    ← Interop benchmark tests
 ├── benchmarks/interop_report.py                    ← Benchmark report generator
 ├── fixtures/interop/hop_demo_source_atoms.json     ← Hop demo source atoms
+├── fixtures/interop/legacy_roundtrip_lossy_cases.json ← Lossy interop fixtures
 ├── tests/conformance/test_hop_chain_demo.py        ← Multi-hop drift PoC tests
 ├── tests/conformance/test_guardrails_gateway.py    ← Guardrail policy tests
 └── tests/conformance/test_intent_lineage_graph.py  ← Lineage graph tests

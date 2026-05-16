@@ -17,6 +17,7 @@ from reference.runtime.lineage import build_intent_lineage_graph
 from reference.runtime.budget import budget_for_tier, update_budget
 from reference.interop.benchmark_v2 import compare_profiles
 from reference.runtime.canary import run_canary_suite
+from reference.runtime.circuit_breaker import circuit_threshold_for_tier, next_circuit_state
 
 
 def _load_json(path: str):
@@ -128,6 +129,18 @@ def cmd_canary(args):
     print(json.dumps(report))
 
 
+def cmd_circuit(args):
+    threshold = args.threshold if args.threshold is not None else circuit_threshold_for_tier(args.tier)
+    out = next_circuit_state(
+        current_state=args.state,
+        event_count=args.event_count,
+        threshold=threshold,
+        cooldown_remaining=args.cooldown_remaining,
+        risk_event=args.risk_event,
+    )
+    print(json.dumps(out))
+
+
 def main():
     p = argparse.ArgumentParser(prog="aria")
     sp = p.add_subparsers(dest="cmd", required=True)
@@ -190,6 +203,15 @@ def main():
     pl.add_argument("--hops", required=True, help="JSON file containing hop list")
     pl.add_argument("--profile", default="strict", choices=["strict", "balanced", "exploratory"])
     pl.set_defaults(func=cmd_lineage)
+
+    pcb = sp.add_parser("circuit")
+    pcb.add_argument("--tier", default="finance")
+    pcb.add_argument("--state", default="closed", choices=["closed", "open", "half_open"])
+    pcb.add_argument("--event-count", type=int, default=0)
+    pcb.add_argument("--threshold", type=int)
+    pcb.add_argument("--cooldown-remaining", type=int, default=0)
+    pcb.add_argument("--risk-event", action="store_true")
+    pcb.set_defaults(func=cmd_circuit)
 
     pcy = sp.add_parser("canary")
     pcy.add_argument("--suite", required=True, help="canary suite JSON")

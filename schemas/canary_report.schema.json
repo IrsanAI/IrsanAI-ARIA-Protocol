@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://irsan.ai/schemas/canary_report.schema.json",
+  "title": "Resonance Canary Report",
+  "type": "object",
+  "required": ["suite_id", "baseline_version", "candidate_version", "status", "cases", "summary"],
+  "properties": {
+    "suite_id": {"type": "string"},
+    "baseline_version": {"type": "string"},
+    "candidate_version": {"type": "string"},
+    "status": {"type": "string", "enum": ["pass", "watch", "fail"]},
+    "cases": {"type": "array", "items": {"type": "object"}},
+    "summary": {"type": "object"}
+  },
+  "additionalProperties": true
+}

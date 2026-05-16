@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://irsan.ai/schemas/resonance_budget.schema.json",
+  "title": "Resonance Budget Envelope",
+  "type": "object",
+  "required": ["budget_max", "budget_used", "budget_remaining", "status"],
+  "properties": {
+    "budget_max": {"type": "number", "minimum": 0, "maximum": 10},
+    "budget_used": {"type": "number", "minimum": 0, "maximum": 10},
+    "budget_remaining": {"type": "number", "minimum": -10, "maximum": 10},
+    "status": {"type": "string", "enum": ["within_budget", "warning", "exhausted"]}
+  },
+  "additionalProperties": false
+}

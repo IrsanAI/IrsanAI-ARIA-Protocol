@@ -1,4 +1,4 @@
-"""Minimal ARIA CLI: validate | ack | rrc."""
+"""Minimal ARIA CLI: validate | ack | ica | calibrate | interop-benchmark | hop-demo | rrc."""
 from __future__ import annotations
 
 import argparse
@@ -11,6 +11,7 @@ from reference.runtime.calibration import evaluate_tier_matrix
 from reference.runtime.rrc import emit_rrc_capsule
 from reference.runtime.validation import validate_aria_packet, validate_rrc_capsule, validate_semantic_ack
 from reference.interop.benchmark import evaluate_roundtrip_suite
+from reference.runtime.hop_chain import run_hop_chain
 
 
 def _load_json(path: str):
@@ -65,6 +66,17 @@ def cmd_interop_benchmark(args):
     print(json.dumps(report))
 
 
+def cmd_hop_demo(args):
+    source = _load_json(args.source)
+    report = run_hop_chain(
+        source_atoms=source,
+        hops=args.hops,
+        profile=args.profile,
+        mission_fingerprint=args.mission_fingerprint,
+    )
+    print(json.dumps(report))
+
+
 def main():
     p = argparse.ArgumentParser(prog="aria")
     sp = p.add_subparsers(dest="cmd", required=True)
@@ -92,6 +104,14 @@ def main():
     pb = sp.add_parser("interop-benchmark")
     pb.add_argument("--fixtures", required=True, help="JSON fixtures for legacy roundtrip")
     pb.set_defaults(func=cmd_interop_benchmark)
+
+
+    ph = sp.add_parser("hop-demo")
+    ph.add_argument("--source", required=True, help="JSON file with 5 source atoms")
+    ph.add_argument("--hops", type=int, default=4)
+    ph.add_argument("--profile", default="strict", choices=["strict", "balanced", "exploratory"])
+    ph.add_argument("--mission-fingerprint", default="mf-hop-chain")
+    ph.set_defaults(func=cmd_hop_demo)
 
     pr = sp.add_parser("rrc")
     pr.add_argument("--capsule-id", required=True)

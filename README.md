@@ -220,6 +220,7 @@ IrsanAI-ARIA-Protocol/
 ├── reference/runtime/semantic.py                  ← Similarity + atom drift scoring
 ├── reference/runtime/aria_ica.py                  ← Minimal Intent Checksum baseline
 ├── reference/runtime/calibration.py               ← Tier calibration logic
+├── reference/runtime/hop_chain.py                 ← 3-4 hop drift PoC + RRC
 ├── reference/runtime/accountability.py            ← Signed accountability events
 ├── reference/runtime/cli.py                       ← Minimal CLI (validate/ack/rrc)
 ├── reference/interop/legacy_bridge_adapter.py     ← Legacy bridge adapter
@@ -236,7 +237,9 @@ IrsanAI-ARIA-Protocol/
 ├── tests/goldensets/domain_tier_matrix.json        ← 6-tier resonance matrix
 ├── fixtures/interop/legacy_roundtrip_cases.json   ← Interop roundtrip fixtures
 ├── tests/conformance/test_interop_benchmark.py    ← Interop benchmark tests
-└── benchmarks/interop_report.py                    ← Benchmark report generator
+├── benchmarks/interop_report.py                    ← Benchmark report generator
+├── fixtures/interop/hop_demo_source_atoms.json     ← Hop demo source atoms
+└── tests/conformance/test_hop_chain_demo.py        ← Multi-hop drift PoC tests
 ```
 
 ---

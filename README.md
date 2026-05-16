@@ -211,7 +211,8 @@ IrsanAI-ARIA-Protocol/
 │   ├── ARIA-RFC-006_Resonance_Guardrails.md ← Pre-handoff guardrail gateway
 │   ├── ARIA-RFC-007_Intent_Lineage_Graph.md ← Branching lineage graph
 │   ├── ARIA-RFC-008_Resonance_Budget_Envelope.md ← Cumulative drift budget
-│   └── ARIA-RFC-009 (planned)         ← Quantum-resistant trust layer
+│   ├── ARIA-RFC-009_Resonance_Canary_Suite.md ← Regression-safety canary suite
+│   └── ARIA-RFC-010 (planned)         ← Quantum-resistant trust layer
 │
 ├── docs/agents/Claude IrsanAI - ARIA - Agent.md  ← Claude collaboration brief
 ├── reference/runtime/mission_orchestrator.py      ← Runtime scaffold
@@ -229,6 +230,7 @@ IrsanAI-ARIA-Protocol/
 ├── reference/runtime/lineage.py                   ← Intent lineage graph builder
 ├── reference/runtime/accountability.py            ← Signed accountability events
 ├── reference/runtime/budget.py                    ← Resonance budget envelope
+├── reference/runtime/canary.py                    ← Canary regression evaluator
 ├── reference/runtime/cli.py                       ← Minimal CLI (validate/ack/rrc)
 ├── reference/interop/legacy_bridge_adapter.py     ← Legacy bridge adapter
 ├── reference/interop/benchmark.py                 ← Legacy↔ARIA drift benchmark

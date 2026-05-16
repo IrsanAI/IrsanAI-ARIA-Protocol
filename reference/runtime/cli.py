@@ -16,6 +16,7 @@ from reference.runtime.guardrails import guardrail_decision
 from reference.runtime.lineage import build_intent_lineage_graph
 from reference.runtime.budget import budget_for_tier, update_budget
 from reference.interop.benchmark_v2 import compare_profiles
+from reference.runtime.canary import run_canary_suite
 
 
 def _load_json(path: str):
@@ -122,6 +123,11 @@ def cmd_budget(args):
     print(json.dumps(report))
 
 
+def cmd_canary(args):
+    report = run_canary_suite(args.suite)
+    print(json.dumps(report))
+
+
 def main():
     p = argparse.ArgumentParser(prog="aria")
     sp = p.add_subparsers(dest="cmd", required=True)
@@ -184,6 +190,10 @@ def main():
     pl.add_argument("--hops", required=True, help="JSON file containing hop list")
     pl.add_argument("--profile", default="strict", choices=["strict", "balanced", "exploratory"])
     pl.set_defaults(func=cmd_lineage)
+
+    pcy = sp.add_parser("canary")
+    pcy.add_argument("--suite", required=True, help="canary suite JSON")
+    pcy.set_defaults(func=cmd_canary)
 
     pbg = sp.add_parser("budget")
     pbg.add_argument("--tier", default="finance")

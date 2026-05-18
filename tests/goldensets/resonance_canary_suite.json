@@ -1,0 +1,43 @@
+{
+  "suite_id": "aria-canary-v1",
+  "baseline_version": "lexical-v1",
+  "candidate_version": "lexical-v1",
+  "cases": [
+    {
+      "id": "canary-finance-01",
+      "source": {
+        "core_intent": "buy apple stock",
+        "constraints": "max 10000 eur blue chips only",
+        "context_dependencies": "portfolio risk class",
+        "success_condition": "order confirmed",
+        "failure_condition": "halt on unrecoverable error"
+      },
+      "received": {
+        "core_intent": "purchase aapl shares",
+        "constraints": "up to 10000 eur blue chip only",
+        "context_dependencies": "portfolio risk profile",
+        "success_condition": "trade confirmed",
+        "failure_condition": "stop on unrecoverable error"
+      },
+      "expected_min": 0.30
+    },
+    {
+      "id": "canary-health-01",
+      "source": {
+        "core_intent": "set medication reminder",
+        "constraints": "no dosage change",
+        "context_dependencies": "timezone and regimen",
+        "success_condition": "reminder confirmed",
+        "failure_condition": "halt on unclear prescription"
+      },
+      "received": {
+        "core_intent": "set medicine reminder",
+        "constraints": "do not change dosage",
+        "context_dependencies": "timezone and treatment plan",
+        "success_condition": "reminder acknowledged",
+        "failure_condition": "stop on unclear prescription"
+      },
+      "expected_min": 0.35
+    }
+  ]
+}

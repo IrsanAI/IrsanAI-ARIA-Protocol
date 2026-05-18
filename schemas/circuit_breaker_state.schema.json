@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://irsan.ai/schemas/circuit_breaker_state.schema.json",
+  "title": "Resonance Circuit Breaker State",
+  "type": "object",
+  "required": ["state", "event_count", "threshold", "cooldown_remaining"],
+  "properties": {
+    "state": {"type": "string", "enum": ["closed", "open", "half_open"]},
+    "event_count": {"type": "integer", "minimum": 0},
+    "threshold": {"type": "integer", "minimum": 1},
+    "cooldown_remaining": {"type": "integer", "minimum": 0}
+  },
+  "additionalProperties": false
+}

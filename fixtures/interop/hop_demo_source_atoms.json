@@ -1,0 +1,7 @@
+{
+  "core_intent": "buy apple stock",
+  "constraints": "max 10000 eur blue chips only",
+  "context_dependencies": "portfolio state risk class",
+  "success_condition": "order executed confirmed",
+  "failure_condition": "halt on unrecoverable error"
+}

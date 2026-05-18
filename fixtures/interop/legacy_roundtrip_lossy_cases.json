@@ -1,0 +1,30 @@
+{
+  "cases": [
+    {
+      "id": "lossy_finance_constraint_drop",
+      "legacy_input": {
+        "goal": "buy apple stock",
+        "constraints": ["max 10000 eur", "blue chips only", "no margin"],
+        "context": {"risk_class": "moderate"},
+        "intent_checksum": "ic::fin-lossy-01",
+        "chain_depth": 0
+      },
+      "mutations": {
+        "drop_constraints_after_roundtrip": ["no margin"]
+      }
+    },
+    {
+      "id": "lossy_healthcare_goal_drift",
+      "legacy_input": {
+        "goal": "set medication reminder no dosage change",
+        "constraints": ["no dosage change"],
+        "context": {"timezone": "UTC", "regimen": "daily"},
+        "intent_checksum": "ic::med-lossy-01",
+        "chain_depth": 0
+      },
+      "mutations": {
+        "rewrite_goal_after_roundtrip": "set health reminder"
+      }
+    }
+  ]
+}

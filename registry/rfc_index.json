@@ -1,0 +1,128 @@
+{
+  "generated_at": "2026-05-18T19:18:08.014302+00:00",
+  "source": "docs/rfcs",
+  "rfcs": [
+    {
+      "id": "ARIA-AGENT-RFC-001",
+      "title": "Agent Runtime Profile (Draft)",
+      "status": "DRAFT",
+      "path": "docs/rfcs/ARIA-AGENT-RFC-001_Agent_Runtime_Profile.md",
+      "category": "Runtime",
+      "depends_on": [
+        "ARIA-RFC-001",
+        "ARIA-RFC-002",
+        "ARIA-RFC-003",
+        "ARIA-RFC-004"
+      ]
+    },
+    {
+      "id": "ARIA-RFC-001",
+      "title": "Agent Reasoning & Intent Architecture",
+      "status": "DRAFT",
+      "path": "docs/rfcs/ARIA-RFC-001_Protocol_Stack.md",
+      "category": "Protocol",
+      "depends_on": []
+    },
+    {
+      "id": "ARIA-RFC-002",
+      "title": "Intent Checksum Algorithm (ARIA-ICA)",
+      "status": "DRAFT",
+      "path": "docs/rfcs/ARIA-RFC-002_Intent_Checksum.md",
+      "category": "Protocol",
+      "depends_on": [
+        "ARIA-RFC-001 (ARIA Protocol v0.1)"
+      ]
+    },
+    {
+      "id": "ARIA-RFC-003",
+      "title": "Domain Threshold Calibration (Draft)",
+      "status": "DRAFT",
+      "path": "docs/rfcs/ARIA-RFC-003_Domain_Thresholds.md",
+      "category": "General",
+      "depends_on": [
+        "ARIA-RFC-001",
+        "ARIA-RFC-002"
+      ]
+    },
+    {
+      "id": "ARIA-RFC-004",
+      "title": "Resonance Replay Capsule (RRC) \u2014 Draft v0.2",
+      "status": "DRAFT",
+      "path": "docs/rfcs/ARIA-RFC-004_Resonance_Replay_Capsule.md",
+      "category": "Interop",
+      "depends_on": []
+    },
+    {
+      "id": "ARIA-RFC-005",
+      "title": "Interop Compatibility Profiles (Draft v0.1)",
+      "status": "DRAFT",
+      "path": "docs/rfcs/ARIA-RFC-005_Interop_Compatibility_Profiles.md",
+      "category": "Interop",
+      "depends_on": []
+    },
+    {
+      "id": "ARIA-RFC-006",
+      "title": "Resonance Guardrails Gateway (RGG) \u2014 Draft v0.1",
+      "status": "DRAFT",
+      "path": "docs/rfcs/ARIA-RFC-006_Resonance_Guardrails.md",
+      "category": "Safety",
+      "depends_on": []
+    },
+    {
+      "id": "ARIA-RFC-007",
+      "title": "Intent Lineage Graph (ILG) \u2014 Draft v0.1",
+      "status": "DRAFT",
+      "path": "docs/rfcs/ARIA-RFC-007_Intent_Lineage_Graph.md",
+      "category": "Interop",
+      "depends_on": []
+    },
+    {
+      "id": "ARIA-RFC-008",
+      "title": "Resonance Budget Envelope (RBE) \u2014 Draft v0.1",
+      "status": "DRAFT",
+      "path": "docs/rfcs/ARIA-RFC-008_Resonance_Budget_Envelope.md",
+      "category": "Safety",
+      "depends_on": []
+    },
+    {
+      "id": "ARIA-RFC-009",
+      "title": "Resonance Canary Suite (RCS) \u2014 Draft v0.1",
+      "status": "DRAFT",
+      "path": "docs/rfcs/ARIA-RFC-009_Resonance_Canary_Suite.md",
+      "category": "Safety",
+      "depends_on": []
+    },
+    {
+      "id": "ARIA-RFC-010",
+      "title": "Resonance Circuit Breaker (RCB) \u2014 Draft v0.1",
+      "status": "DRAFT",
+      "path": "docs/rfcs/ARIA-RFC-010_Resonance_Circuit_Breaker.md",
+      "category": "Safety",
+      "depends_on": []
+    },
+    {
+      "id": "ARIA-RFC-011",
+      "title": "Semantic Consensus Quorum (SCQ) \u2014 Draft v0.1",
+      "status": "DRAFT",
+      "path": "docs/rfcs/ARIA-RFC-011_Semantic_Consensus_Quorum.md",
+      "category": "Safety",
+      "depends_on": []
+    },
+    {
+      "id": "ARIA-RFC-012",
+      "title": "Cognitive Role Architecture (CRA) \u2014 Draft v0.1",
+      "status": "DRAFT",
+      "path": "docs/rfcs/ARIA-RFC-012_Cognitive_Role_Architecture.md",
+      "category": "Runtime",
+      "depends_on": []
+    },
+    {
+      "id": "ARIA-RFC-013",
+      "title": "Agent Capability Registry (ACR) \u2014 Draft v0.1",
+      "status": "DRAFT",
+      "path": "docs/rfcs/ARIA-RFC-013_Agent_Capability_Registry.md",
+      "category": "Runtime",
+      "depends_on": []
+    }
+  ]
+}

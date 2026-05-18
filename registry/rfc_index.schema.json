@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://irsan.ai/registry/rfc_index.schema.json",
+  "title": "ARIA RFC Index",
+  "type": "object",
+  "required": ["generated_at", "source", "rfcs"],
+  "properties": {
+    "generated_at": {"type": "string"},
+    "source": {"type": "string"},
+    "rfcs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "status", "path", "category"],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "status": {"type": "string"},
+          "path": {"type": "string"},
+          "category": {"type": "string"},
+          "depends_on": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

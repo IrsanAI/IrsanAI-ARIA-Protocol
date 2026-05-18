@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://irsan.ai/schemas/intent_lineage_graph.schema.json",
+  "title": "Intent Lineage Graph",
+  "type": "object",
+  "required": ["graph_id", "mission_fingerprint", "nodes", "edges"],
+  "properties": {
+    "graph_id": {"type": "string"},
+    "mission_fingerprint": {"type": "string"},
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["node_id", "agent_id", "chain_depth"],
+        "properties": {
+          "node_id": {"type": "string"},
+          "agent_id": {"type": "string"},
+          "chain_depth": {"type": "integer", "minimum": 0},
+          "state_hash": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["edge_id", "from", "to", "similarity", "drift_delta", "guardrail_mode", "profile"],
+        "properties": {
+          "edge_id": {"type": "string"},
+          "from": {"type": "string"},
+          "to": {"type": "string"},
+          "similarity": {"type": "number", "minimum": 0, "maximum": 1},
+          "drift_delta": {"type": "number", "minimum": 0, "maximum": 1},
+          "guardrail_mode": {"type": "string", "enum": ["allow", "review", "block"]},
+          "profile": {"type": "string", "enum": ["strict", "balanced", "exploratory"]}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

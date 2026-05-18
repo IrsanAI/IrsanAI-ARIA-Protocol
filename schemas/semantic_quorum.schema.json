@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://irsan.ai/schemas/semantic_quorum.schema.json",
+  "title": "Semantic Consensus Quorum",
+  "type": "object",
+  "required": ["quorum_ratio", "total_votes", "confirmed_votes", "outcome"],
+  "properties": {
+    "quorum_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+    "total_votes": {"type": "integer", "minimum": 1},
+    "confirmed_votes": {"type": "integer", "minimum": 0},
+    "outcome": {"type": "string", "enum": ["quorum_confirmed", "quorum_degraded", "quorum_rejected"]}
+  },
+  "additionalProperties": true
+}

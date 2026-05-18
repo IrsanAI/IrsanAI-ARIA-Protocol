@@ -1,0 +1,5 @@
+[
+  {"agent_id": "a1", "status": "ack_confirmed", "similarity": 0.95},
+  {"agent_id": "a2", "status": "ack_confirmed", "similarity": 0.91},
+  {"agent_id": "a3", "status": "ack_drift_detected", "similarity": 0.72}
+]

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://irsan.ai/schemas/cognitive_role_map.schema.json",
+  "title": "Cognitive Role Map",
+  "type": "object",
+  "required": ["task_id", "roles", "execution_mode", "self_assessment"],
+  "properties": {
+    "task_id": {"type": "string"},
+    "roles": {"type": "object"},
+    "execution_mode": {"type": "string", "enum": ["parallel", "sequential"]},
+    "self_assessment": {"type": "object"}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,148 @@
+{
+  "tiers": [
+    {
+      "tier": "creative",
+      "profile": "exploratory",
+      "min_similarity": 0.18,
+      "cases": [
+        {
+          "id": "creative_equivalent",
+          "source": {
+            "core_intent": "brainstorm campaign ideas",
+            "constraints": "include sustainability angle",
+            "context_dependencies": "brand tone playful",
+            "success_condition": "10 concept drafts",
+            "failure_condition": "halt on policy violation"
+          },
+          "received": {
+            "core_intent": "generate marketing concepts",
+            "constraints": "must include eco perspective",
+            "context_dependencies": "playful brand voice",
+            "success_condition": "ten draft concepts",
+            "failure_condition": "stop if policy breaks"
+          }
+        }
+      ]
+    },
+    {
+      "tier": "business",
+      "profile": "balanced",
+      "min_similarity": 0.49,
+      "cases": [
+        {
+          "id": "business_equivalent",
+          "source": {
+            "core_intent": "prepare quarterly forecast",
+            "constraints": "use approved assumptions only",
+            "context_dependencies": "historical revenue and costs",
+            "success_condition": "forecast pack approved",
+            "failure_condition": "halt on missing source data"
+          },
+          "received": {
+            "core_intent": "create q forecast",
+            "constraints": "only approved assumptions",
+            "context_dependencies": "historic revenue and cost data",
+            "success_condition": "forecast packet accepted",
+            "failure_condition": "stop if source data missing"
+          }
+        }
+      ]
+    },
+    {
+      "tier": "finance",
+      "profile": "strict",
+      "min_similarity": 0.36,
+      "cases": [
+        {
+          "id": "finance_equivalent",
+          "source": {
+            "core_intent": "buy apple stock",
+            "constraints": "max 10000 eur blue chips only",
+            "context_dependencies": "portfolio state risk class",
+            "success_condition": "order executed confirmed",
+            "failure_condition": "halt on unrecoverable error"
+          },
+          "received": {
+            "core_intent": "purchase aapl shares",
+            "constraints": "up to 10000 eur blue chip equities only",
+            "context_dependencies": "portfolio status and risk class",
+            "success_condition": "trade executed and confirmed",
+            "failure_condition": "stop on unrecoverable error"
+          }
+        }
+      ]
+    },
+    {
+      "tier": "healthcare",
+      "profile": "strict",
+      "min_similarity": 0.41,
+      "cases": [
+        {
+          "id": "healthcare_equivalent",
+          "source": {
+            "core_intent": "schedule medication reminder",
+            "constraints": "no dosage modification",
+            "context_dependencies": "patient timezone and regimen",
+            "success_condition": "reminder confirmed",
+            "failure_condition": "halt on ambiguous prescription"
+          },
+          "received": {
+            "core_intent": "set medicine reminder",
+            "constraints": "do not change dosage",
+            "context_dependencies": "timezone and treatment regimen",
+            "success_condition": "reminder acknowledged",
+            "failure_condition": "stop on unclear prescription"
+          }
+        }
+      ]
+    },
+    {
+      "tier": "legal",
+      "profile": "strict",
+      "min_similarity": 0.65,
+      "cases": [
+        {
+          "id": "legal_equivalent",
+          "source": {
+            "core_intent": "draft nda review summary",
+            "constraints": "no legal advice beyond clause mapping",
+            "context_dependencies": "contract version and jurisdiction",
+            "success_condition": "summary delivered with clause references",
+            "failure_condition": "halt on missing governing law"
+          },
+          "received": {
+            "core_intent": "prepare nda clause review summary",
+            "constraints": "avoid legal advice outside clause mapping",
+            "context_dependencies": "agreement version and jurisdiction",
+            "success_condition": "summary with clause citations",
+            "failure_condition": "stop if governing law absent"
+          }
+        }
+      ]
+    },
+    {
+      "tier": "critical_safety",
+      "profile": "strict",
+      "min_similarity": 0.49,
+      "cases": [
+        {
+          "id": "critical_safety_equivalent",
+          "source": {
+            "core_intent": "trigger emergency shutdown protocol",
+            "constraints": "require dual verification",
+            "context_dependencies": "sensor anomaly and plant state",
+            "success_condition": "shutdown confirmed and logged",
+            "failure_condition": "halt if verification fails"
+          },
+          "received": {
+            "core_intent": "activate emergency shutdown procedure",
+            "constraints": "dual authorization required",
+            "context_dependencies": "anomaly sensor and facility state",
+            "success_condition": "shutdown acknowledged and recorded",
+            "failure_condition": "stop when verification fails"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 
 from reference.runtime.execution_specialist import ExecutionSpecialist
@@ -152,11 +153,26 @@ def cmd_quorum(args):
 
 
 def cmd_rolemap(args):
-    role_map = build_role_map(task_id=args.task_id, task_text=args.task_text, activation_threshold=args.threshold)
+    _load_registry_file()
+    role_map = build_role_map(task_id=args.task_id, task_text=args.task_text, activation_threshold=args.threshold, registry_snapshot=_REG.snapshot(), preferred_domain=getattr(args, "domain", None))
     print(json.dumps(role_map))
 
 
+_REGISTRY_FILE = "fixtures/interop/agent_registry_snapshot.json"
 _REG = AgentRegistry()
+
+
+def _load_registry_file():
+    if os.path.exists(_REGISTRY_FILE):
+        data = _load_json(_REGISTRY_FILE)
+        for c in data:
+            _REG.register(AgentCapabilityCard(**c))
+
+
+def _save_registry_file():
+    from pathlib import Path
+    Path(_REGISTRY_FILE).parent.mkdir(parents=True, exist_ok=True)
+    Path(_REGISTRY_FILE).write_text(json.dumps(_REG.snapshot(), indent=2) + "\n")
 
 
 def cmd_register_agent(args):
@@ -170,11 +186,14 @@ def cmd_register_agent(args):
         trust_level=args.trust_level,
         latency_class=args.latency_class,
     )
+    _load_registry_file()
     _REG.register(card)
+    _save_registry_file()
     print(json.dumps({"registered": card.agent_id}))
 
 
 def cmd_registry_snapshot(args):
+    _load_registry_file()
     print(json.dumps(_REG.snapshot()))
 
 
@@ -259,6 +278,7 @@ def main():
     prm.add_argument("--task-id", required=True)
     prm.add_argument("--task-text", required=True)
     prm.add_argument("--threshold", type=float, default=0.3)
+    prm.add_argument("--domain", default=None)
     prm.set_defaults(func=cmd_rolemap)
 
     pq = sp.add_parser("quorum")

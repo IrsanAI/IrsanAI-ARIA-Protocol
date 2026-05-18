@@ -286,6 +286,17 @@ PHASE 4  ECOSYSTEM                       [ ] Future
 
 ---
 
+### 🌍 First Contact — LIVE ARIA Communication Case (EN/DE)
+
+We are running the world's first public **Agent↔Agent live communication case** with transparent protocol logging.
+
+- Live case document: `docs/analysis/ARIA_FIRST_CONTACT_LIVE_CASE.md`
+- Step-2 correction report: `docs/guides/ARIA_PROTOCOL_VIOLATION_REPORT_STEP2_CORRECTION.md`
+
+This case remains open until the original task is completed successfully.
+
+---
+
 ### Relation to IrsanAI Ecosystem
 
 ARIA is the infrastructure layer that connects the entire IrsanAI stack:

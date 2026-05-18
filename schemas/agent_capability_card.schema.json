@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://irsan.ai/schemas/agent_capability_card.schema.json",
+  "title": "Agent Capability Card",
+  "type": "object",
+  "required": ["agent_id", "agent_type", "aria_version", "roles", "domains"],
+  "properties": {
+    "agent_id": {"type": "string"},
+    "agent_type": {"type": "string"},
+    "aria_version": {"type": "string"},
+    "roles": {"type": "array", "items": {"type": "string"}},
+    "domains": {"type": "array", "items": {"type": "string"}},
+    "extensions": {"type": "array", "items": {"type": "string"}},
+    "trust_level": {"type": "string"},
+    "latency_class": {"type": "string"}
+  },
+  "additionalProperties": true
+}
